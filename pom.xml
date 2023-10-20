@@ -10,9 +10,9 @@
 		<!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>jpasecdemo</artifactId>
+	<artifactId>capstone3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jpasecdemo</name>
+	<name>capstone3</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
