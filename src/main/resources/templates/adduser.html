@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<div>
+			<h2>User Entry Form</h2>
+			<form action="/save" method="get" id="form1" th:object="${users}">
+
+				<table class="table table-striped">
+					<tr>
+						<td>User Id:</td>
+						<td><input type="text" th:field="*{id}" readonly></td>
+					</tr>
+					<tr>
+						<td>User Name:</td>
+						<td><input type="text" th:field="*{username}"></td>
+					</tr>
+					<tr>
+						<td>Password:</td>
+						<td><input type="text" th:field="*{password}"></td>
+					</tr>
+
+					<tr>
+						<td>
+							<div> <th:block th:each="role: ${listRoles}">
+									<input type="checkbox" th:field="*{userRoles}" th:text="${role.name}"
+										th:value="${role.id}" class="m-2" />
+								</th:block>
+							</div>
+						</td>
+					</tr>
+
+				</table>
+			</form>
+			<button type="submit" form="form1" value="Submit">Submit</button>
+			<button style="background-color: grey" type="button"
+				class="btn btn-primary" onclick="window.location.href='/'">
+				Home
+			</button>
+			<form action="/logout" method="post">
+				<button type="submit">Logout</button>
+			</form>
+		</div>
+
+	</body>
+</html>
