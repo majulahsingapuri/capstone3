@@ -23,6 +23,8 @@
 				<tr>
 					<th>User Id</th>
 					<th>User Name</th>
+					<th>First Name</th>
+					<th>Last Name</th>
 					<th>Enabled</th>
 					<th>Role</th>
 				</tr>
@@ -32,6 +34,8 @@
 				<tr th:each="u:${usersList}">
 					<td th:text="${u.id}"></td>
 					<td th:text="${u.username}"></td>
+					<td th:text="${u.firstName}"></td>
+					<td th:text="${u.lastName}"></td>
 					<td th:text="${u.enabled}"></td>
 					<td th:text="${u.userRole}"></td>
 
