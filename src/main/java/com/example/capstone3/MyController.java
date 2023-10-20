@@ -2,7 +2,10 @@ package com.example.capstone3;
 
 import java.security.Principal;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -29,7 +32,21 @@ public class MyController {
         model.addAttribute("usersList", usersList);
         model.addAttribute("username", principal.getName());
         model.addAttribute("principal", principal);
-        return "index";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean hasAdminRole = authentication.getAuthorities().stream()
+        .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+        boolean hasTellerRole = authentication.getAuthorities().stream()
+        .anyMatch(r -> r.getAuthority().equals("ROLE_TELLER"));
+        System.out.println("has admin role is: " + hasAdminRole);
+        System.out.println("has teller role is: " + hasTellerRole);
+        if (hasAdminRole) {
+            return "adminindex";
+        }
+        else if (hasTellerRole) {
+        
+            return "tellerindex";
+        }
+        return "errorindex";
     }
 
     @RequestMapping("/new")
