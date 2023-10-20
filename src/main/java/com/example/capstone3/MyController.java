@@ -1,4 +1,4 @@
-package com.example.jpasecdemo;
+package com.example.capstone3;
 
 import java.security.Principal;
 import java.util.List;
@@ -24,7 +24,7 @@ public class MyController {
 
     @RequestMapping("/")
     public String showMain(Model model, Principal principal) {
-        List<Users> usersList = (List<Users>) userRepository.findAll();
+        List<User> usersList = (List<User>) userRepository.findAll();
         System.out.println(principal.getName());
         model.addAttribute("usersList", usersList);
         model.addAttribute("username", principal.getName());
@@ -33,8 +33,8 @@ public class MyController {
     }
 
     @RequestMapping("/new")
-    public String addUser(Users users, Model model) {
-        model.addAttribute("users", users);
+    public String addUser(User user, Model model) {
+        model.addAttribute("user", user);
         List<Role> listRoles = (List<Role>) roleRepository.findAll();
         model.addAttribute("listRoles", listRoles);
         return "adduser";
@@ -42,9 +42,9 @@ public class MyController {
 
     @RequestMapping("/edit/{id}")
     public String editUser(@PathVariable("id") Long id, Model model) {
-        Users users = userRepository.findById(id).orElseThrow();
+        User user = userRepository.findById(id).orElseThrow();
         List<Role> listRoles = (List<Role>) roleRepository.findAll();
-        model.addAttribute("users", users);
+        model.addAttribute("user", user);
         model.addAttribute("listRoles", listRoles);
 
         return "adduser";
@@ -57,9 +57,9 @@ public class MyController {
     }
 
     @RequestMapping("/save")
-    public String saveUser(Users users) {
-        users.setPassword(passwordEncoder.encode(users.getPassword()));
-        userRepository.save(users);
+    public String saveUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
         return "redirect:/";
     }
 

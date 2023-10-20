@@ -1,4 +1,4 @@
-package com.example.jpasecdemo;
+package com.example.capstone3;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,12 +11,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users users = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
 
-        if (users == null) {
+        if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
 
-        return new MyUserDetails(users);
+        return new MyUserDetails(user);
     }
 }

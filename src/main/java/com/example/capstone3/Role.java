@@ -1,4 +1,4 @@
-package com.example.jpasecdemo;
+package com.example.capstone3;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

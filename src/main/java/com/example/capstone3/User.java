@@ -1,7 +1,5 @@
-package com.example.jpasecdemo;
+package com.example.capstone3;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,12 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class Users {
+public class User{
 
     @Id
     @Column(name = "user_id")
@@ -26,11 +24,11 @@ public class Users {
     private String password;
     private boolean enabled;
 
-    public Users() {
+    public User() {
         super();
     }
 
-    public Users(Long id, String username, String password) {
+    public User(Long id, String username, String password) {
         super();
         this.id = id;
         this.username = username;
@@ -38,9 +36,9 @@ public class Users {
 
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> userRoles = new HashSet<>();
+    private Role userRole;
 
     public Long getId() {
         return id;
@@ -66,12 +64,12 @@ public class Users {
         this.password = password;
     }
 
-    public Set<Role> getUserRoles() {
-        return userRoles;
+    public Role getUserRole() {
+        return userRole;
     }
 
-    public void setUserRoles(Set<Role> userRoles) {
-        this.userRoles = userRoles;
+    public void setUserRoles(Role userRole) {
+        this.userRole = userRole;
     }
 
     public boolean isEnabled() {

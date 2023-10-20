@@ -23,7 +23,7 @@
 				<tr>
 					<th>User Id</th>
 					<th>User Name</th>
-					<!-- <th>Enabled</th> -->
+					<th>Enabled</th>
 					<th>Role</th>
 				</tr>
 			</thead>
@@ -32,8 +32,8 @@
 				<tr th:each="u:${usersList}">
 					<td th:text="${u.id}"></td>
 					<td th:text="${u.username}"></td>
-					<!-- <td th:text="${u.enabled}"></td> -->
-					<td th:text="${u.userRoles}"></td>
+					<td th:text="${u.enabled}"></td>
+					<td th:text="${u.userRole}"></td>
 
 					<td><a class="edit" th:href="@{'/edit/' +${u.id}}"> <i
 								class="fas fa-user-edit"></i> edit

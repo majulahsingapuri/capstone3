@@ -1,4 +1,4 @@
-package com.example.jpasecdemo;
+package com.example.capstone3;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

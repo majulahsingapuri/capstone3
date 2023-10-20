@@ -7,13 +7,9 @@
 	<body>
 		<div>
 			<h2>User Entry Form</h2>
-			<form action="/save" method="get" id="form1" th:object="${users}">
+			<form action="/save" method="get" id="form1" th:object="${user}">
 
 				<table class="table table-striped">
-					<tr>
-						<td>User Id:</td>
-						<td><input type="text" th:field="*{id}" readonly></td>
-					</tr>
 					<tr>
 						<td>User Name:</td>
 						<td><input type="text" th:field="*{username}"></td>
@@ -26,7 +22,7 @@
 					<tr>
 						<td>
 							<div> <th:block th:each="role: ${listRoles}">
-									<input type="checkbox" th:field="*{userRoles}" th:text="${role.name}"
+									<input type="radio" name="userRole" th:field="*{userRole}" th:text="${role.name}"
 										th:value="${role.id}" class="m-2" />
 								</th:block>
 							</div>

@@ -1,9 +1,8 @@
-package com.example.jpasecdemo;
+package com.example.capstone3;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,20 +12,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class MyUserDetails implements UserDetails {
 
     @Autowired
-    Users users;
+    User user;
 
-    public MyUserDetails(Users users) {
-        this.users = users;
+    public MyUserDetails(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Role> userRoles = users.getUserRoles();
+        Role userRole = user.getUserRole();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-        for (Role userRole : userRoles) {
-            authorities.add(new SimpleGrantedAuthority(userRole.getName()));
-        }
+        authorities.add(new SimpleGrantedAuthority(userRole.getName()));
 
         return authorities;
     }
@@ -53,11 +50,11 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return users.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return users.getUsername();
+        return user.getUsername();
     }
 }

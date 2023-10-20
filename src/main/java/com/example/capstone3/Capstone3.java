@@ -1,13 +1,13 @@
-package com.example.jpasecdemo;
+package com.example.capstone3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JpasecdemoApplication {
+public class Capstone3 {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JpasecdemoApplication.class, args);
+		SpringApplication.run(Capstone3.class, args);
 	}
 
 }
