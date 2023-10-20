@@ -2,6 +2,8 @@ package com.example.capstone3;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -57,7 +59,15 @@ public class MyController {
     }
 
     @RequestMapping("/save")
-    public String saveUser(User user) {
+    public String saveUser(User user, Model model) {
+        Optional<User> db_user = userRepository.findByUsername(user.getUsername());
+        if (db_user.isPresent()) {
+            model.addAttribute("user", user);
+            List<Role> listRoles = (List<Role>) roleRepository.findAll();
+            model.addAttribute("listRoles", listRoles);
+            model.addAttribute("error", "User already exists");
+            return "adduser";
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/";

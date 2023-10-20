@@ -14,9 +14,6 @@
 		<p>Logged in as : <span sec:authentication="name"></span></p>
 		<p>You have: <span sec:authentication="principal.authorities[0]"></span>
 			privilege </p>
-		<!-- <div sec:authorize="hasAnyAuthority('Admin')">
-			<span>Tested</span>
-		</div> -->
 
 		<table>
 			<thead class="thead-dark">
@@ -47,12 +44,12 @@
 			</tbody>
 		</table>
 
-		<div sec:authorize="hasAnyAuthority('CREATOR', 'Admin')">
+		<div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 			<form th:action="@{/new}">
 				<input type="submit" value="Add Users" />
 			</form>
 		</div>
-
+		
 		<form action="/logout" method="post">
 			<button type="submit">Logout</button>
 		</form>
