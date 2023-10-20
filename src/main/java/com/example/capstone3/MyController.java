@@ -27,7 +27,6 @@ public class MyController {
     @RequestMapping("/")
     public String showMain(Model model, Principal principal) {
         List<User> usersList = (List<User>) userRepository.findAll();
-        System.out.println(principal.getName());
         model.addAttribute("usersList", usersList);
         model.addAttribute("username", principal.getName());
         model.addAttribute("principal", principal);
