@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 
@@ -58,7 +59,7 @@ public class MyController {
     }
 
     @RequestMapping("/save")
-    public String saveUser(User user, Model model) {
+    public String saveUser(User user, Model model,@RequestParam("userRole") Long id) {
         Optional<User> db_user = userRepository.findByUsername(user.getUsername());
         if (db_user.isPresent()) {
             model.addAttribute("user", user);
@@ -67,6 +68,7 @@ public class MyController {
             model.addAttribute("error", "User already exists");
             return "adduser";
         }
+        user.setUserRoles(roleRepository.findById(id).get());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/";
