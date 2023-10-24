@@ -11,7 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -62,8 +64,21 @@ public class MyController {
         List<Role> listRoles = (List<Role>) roleRepository.findAll();
         model.addAttribute("user", user);
         model.addAttribute("listRoles", listRoles);
+        model.addAttribute("id", id);
 
-        return "adduser";
+        return "edituser";
+    }
+    
+    /*
+     * new created user has no password,need to read previous
+     */
+    @PostMapping("/edit/{id}")
+    public String save_editUser(@ModelAttribute("user") User user,@RequestParam("userRole") Long role_id,@PathVariable("id") Long id) {
+        user.setUserRoles(roleRepository.findById(role_id).get());
+        User user_old = userRepository.findById(id).orElseThrow();
+        user.setPassword(user_old.getPassword());
+        userRepository.save(user);
+        return "redirect:/";
     }
 
     @RequestMapping("/delete/{id}")

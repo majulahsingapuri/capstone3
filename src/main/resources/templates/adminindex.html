@@ -35,7 +35,7 @@
 					<td th:text="${u.enabled}"></td>
 					<td th:text="${u.userRole}"></td>
 
-					<td><a class="edit" th:href="@{'/edit/' +${u.id}}"> <i
+					<td sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a class="edit" th:href="@{'/edit/' +${u.id}}"> <i
 								class="fas fa-user-edit"></i> edit
 						</a> <a style="color: red" th:href="@{'/delete/' + ${u.id}}"><i
 								class="fas fa-trash"></i>delete</a></td>
