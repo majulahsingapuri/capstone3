@@ -1,6 +1,8 @@
 package com.example.capstone3;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,11 +20,15 @@ public class Account {
     private Long accountId;
     private String name;
     private String accountType;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
 
        public Account() {
     }
 
-    public Account(Long accountId, String name, String accountType, Customer customer, String status) {
+    public Account(Long accountId, String name, String accountType, Customer customer, Status status) {
+        super();
         this.accountId = accountId;
         this.name = name;
         this.accountType = accountType;
@@ -35,9 +41,9 @@ public class Account {
     private Customer customer;
 
 
-    @Column(columnDefinition = "VARCHAR(10)")
-    private String status;
-
+    public enum Status {
+        Active, Frozen, Deleted;
+    }
 
     public Long getAccountId() {
         return this.accountId;
@@ -71,10 +77,12 @@ public class Account {
         this.customer = customer;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
-    }}
+    }
+
+    }

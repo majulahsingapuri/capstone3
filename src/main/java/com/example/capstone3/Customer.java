@@ -1,8 +1,4 @@
 package com.example.capstone3;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -21,6 +17,7 @@ public class Customer {
     }
 
     public Customer(Long customerId, String firstname, String lastname) {
+        super();
         this.customerId = customerId;
         this.firstname = firstname;
         this.lastname = lastname;

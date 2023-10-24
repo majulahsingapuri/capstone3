@@ -9,7 +9,3 @@
 --         TRUE,
 --         1
 --     );
-
--- ALTER TABLE accounts
--- ADD CONSTRAINT check_status
--- CHECK (status IN ('active', 'frozen', 'deleted'));

@@ -1,8 +1,5 @@
 package com.example.capstone3;
-
-
 import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,23 +21,26 @@ public class Transaction {
     private String type;
     private double amount;
 
-
-    public Transaction() {
-        super();
-    }
-
-    public Transaction(Long id, String username, String password, Account account) {
-        super();
-        this.TransactionId = TransactionId;
-        this.type = type;
-        this.amount = amount;
-        this.account = account;
-
-    }
-
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
+
+
+    public Transaction() {
+    }
+
+
+    public Transaction(Long TransactionId, LocalDate datecreated, String type, double amount, Account account) {
+        super();
+        this.TransactionId = TransactionId;
+        this.datecreated = datecreated;
+        this.type = type;
+        this.amount = amount;
+        this.account = account;
+    }
+
+
+
 
 
     public Long getTransactionId() {
