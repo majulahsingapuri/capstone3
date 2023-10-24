@@ -13,13 +13,5 @@
 	<body>
 		<p>Logged in as : <span sec:authentication="name"></span></p>
 		<div sec:authorize="hasAuthority('ROLE_TELLER')">
-		<!-- <p>You have: <span sec:authentication="principal.authorities[1]"></span>
-			privilege </p> -->
-		<!-- <div sec:authorize="hasAnyAuthority('Admin')">
-			<span>Tested</span>
-		</div> -->
-
-		
-
 	</body>
 </html>
