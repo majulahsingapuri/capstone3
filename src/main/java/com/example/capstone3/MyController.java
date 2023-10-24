@@ -37,8 +37,6 @@ public class MyController {
         .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
         boolean hasTellerRole = authentication.getAuthorities().stream()
         .anyMatch(r -> r.getAuthority().equals("ROLE_TELLER"));
-        System.out.println("has admin role is: " + hasAdminRole);
-        System.out.println("has teller role is: " + hasTellerRole);
         if (hasAdminRole) {
             return "adminindex";
         }
