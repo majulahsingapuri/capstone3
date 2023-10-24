@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+		<style>
+			tr,td,th{
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<p>Logged in as : <span sec:authentication="name"></span></p>
+		<div sec:authorize="hasAuthority('ROLE_TELLER')">
+	</body>
+</html>

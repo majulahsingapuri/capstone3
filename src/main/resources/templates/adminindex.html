@@ -10,10 +10,9 @@
 			}
 		</style>
 	</head>
-	<body>
+	<p>
 		<p>Logged in as : <span sec:authentication="name"></span></p>
-		<p>You have: <span sec:authentication="principal.authorities[0]"></span>
-			privilege </p>
+		<div sec:authorize="hasAuthority('ROLE_ADMIN')"></div>
 
 		<table>
 			<thead class="thead-dark">

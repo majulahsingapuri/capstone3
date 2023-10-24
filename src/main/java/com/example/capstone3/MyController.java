@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -31,7 +33,19 @@ public class MyController {
         model.addAttribute("usersList", usersList);
         model.addAttribute("username", principal.getName());
         model.addAttribute("principal", principal);
-        return "index";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean hasAdminRole = authentication.getAuthorities().stream()
+        .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+        boolean hasTellerRole = authentication.getAuthorities().stream()
+        .anyMatch(r -> r.getAuthority().equals("ROLE_TELLER"));
+        if (hasAdminRole) {
+            return "adminindex";
+        }
+        else if (hasTellerRole) {
+        
+            return "tellerindex";
+        }
+        return "errorindex";
     }
 
     @RequestMapping("/new")
