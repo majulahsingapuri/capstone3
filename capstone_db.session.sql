@@ -7,3 +7,7 @@
 --         TRUE
 --     );
 -- INSERT INTO users_roles (role_id, user_id) VALUES (1, 1)
+
+ALTER TABLE accounts
+ADD CONSTRAINT check_status
+CHECK (status IN ('active', 'frozen', 'deleted'));
