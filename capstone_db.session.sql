@@ -1,13 +1,12 @@
 -- INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
 -- INSERT INTO roles (name) VALUES ('ROLE_TELLER');
--- INSERT INTO users (username, password, enabled)
+-- INSERT INTO users (username, first_name, last_name, password, enabled, role_id)
 -- VALUES (
 --         'admin',
+--         'Admin',
+--         'Last Name',
 --         '$2a$10$qLawnDP..8UX.KvfKZ9jBe1MZt1KR6bob/rs.111v8FJcPGYQ/qE.',
---         TRUE
+--         TRUE,
+--         1
 --     );
 -- INSERT INTO users_roles (role_id, user_id) VALUES (1, 1)
-
-ALTER TABLE accounts
-ADD CONSTRAINT check_status
-CHECK (status IN ('active', 'frozen', 'deleted'));

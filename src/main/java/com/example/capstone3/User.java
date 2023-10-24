@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -20,24 +19,28 @@ public class User{
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique=true)
     private String username;
     private String password;
+    private String firstName;
+    private String lastName;
     private boolean enabled;
 
     public User() {
         super();
     }
 
-    public User(Long id, String username, String password) {
+    public User(Long id, String username, String password, String firstName, String lastName) {
         super();
         this.id = id;
         this.username = username;
         this.password = password;
-
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinColumn(name = "role_id")
     private Role userRole;
 
     public Long getId() {
@@ -62,6 +65,22 @@ public class User{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Role getUserRole() {
