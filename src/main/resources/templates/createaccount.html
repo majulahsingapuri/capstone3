@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+    <style>
+        tr,td,th{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
+
+<form action="/account/create" method="post">
+    <h2>Create a customer account</h2>
+    <span>Customer name:</span>
+    <select name="customerId">
+        <option value="">Select a Customer</option>
+        <!-- Use Thymeleaf syntax to iterate through customers -->
+        <option th:each="customer : ${customers}" th:value="${customer.customerId}" th:text="${customer.firstname} + ' ' + ${customer.lastname}"></option>
+    </select>
+    <br>
+
+    <label for="accountName">Account Name:</label>
+    <input type="text" id="accountName" name="accountName" required>
+    <br>
+
+    <label>Account Type:</label>
+    <input type="radio" id="currentAccount" name="accountType" value="Current" checked>
+    <label for="currentAccount">Current</label>
+    <input type="radio" id="savingsAccount" name="accountType" value="Savings">
+    <label for="savingsAccount">Savings</label>
+
+
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<form action="/">
+    <button type="submit">Back</button>
+</form>
+
+</body>
+</html>

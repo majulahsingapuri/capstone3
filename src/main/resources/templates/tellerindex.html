@@ -12,6 +12,38 @@
 	</head>
 	<body>
 		<p>Logged in as : <span sec:authentication="name"></span></p>
-		<div sec:authorize="hasAuthority('ROLE_TELLER')">
+		<div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
+
+		<table>
+			<thead class="thead-dark">
+			<tr>
+				<th>Customer Name</th>
+				<th>Account Name</th>
+				<th>Account Type</th>
+				<th>Status</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr th:each="u:${accountList}">
+				<td th:text="${u.customer.firstname}+' ' + ${u.customer.lastname} "></td>
+				<td th:text="${u.name}"></td>
+				<td th:text="${u.accountType}"></td>
+				<td th:text="${u.status}"></td>
+				<!--to edit-->
+				<td><a class="edit" th:href="@{'/view/' +${u.accountId}}"> <i
+						class="fas fa-user-edit"></i> view
+				</a> <a style="color: red" th:href="@{'/account/delete/' + ${u.accountId}}"><i
+						class="fas fa-trash"></i>delete</a></td>
+			</tr>
+			</tbody>
+		</table>
+
+
+		<form action="/account/create">
+			<button type="submit">Create new account</button>
+		</form>
+
+
 	</body>
 </html>

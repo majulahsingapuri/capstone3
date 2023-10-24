@@ -27,8 +27,8 @@ public class MyController {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
-
-
+    @Autowired
+    private AccountRepository accountRepository;
     @RequestMapping("/")
     public String showMain(Model model, Principal principal) {
         List<User> usersList = (List<User>) userRepository.findAll();
@@ -44,7 +44,8 @@ public class MyController {
             return "adminindex";
         }
         else if (hasTellerRole) {
-        
+            List<Account> accountList = accountRepository.findAllByOrderByCustomerAsc();
+            model.addAttribute("accountList", accountList);
             return "tellerindex";
         }
         return "errorindex";
