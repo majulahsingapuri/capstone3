@@ -69,10 +69,14 @@ public class MyController {
         return "edituser";
     }
     
+    /*
+     * new created user has no password,need to read previous
+     */
     @PostMapping("/edit/{id}")
-    public String save_editUser(@ModelAttribute("user") User user,@RequestParam("userRole") Long role_id) {
+    public String save_editUser(@ModelAttribute("user") User user,@RequestParam("userRole") Long role_id,@PathVariable("id") Long id) {
         user.setUserRoles(roleRepository.findById(role_id).get());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User user_old = userRepository.findById(id).orElseThrow();
+        user.setPassword(user_old.getPassword());
         userRepository.save(user);
         return "redirect:/";
     }
