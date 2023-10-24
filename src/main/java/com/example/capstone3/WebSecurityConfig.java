@@ -17,7 +17,7 @@ public class WebSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/logout", "/login").permitAll()
-                        .requestMatchers("/", "/new", "/edit/*", "/delete/*", "/save")
+                        .requestMatchers("/", "/new", "/edit/*", "/delete/*", "/save", "/account/*", "/account/delete/*")
                         .authenticated())
                 .formLogin(
                         fl -> fl.permitAll())

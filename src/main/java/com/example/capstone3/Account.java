@@ -19,7 +19,9 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;
     private String name;
-    private String accountType;
+
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
     @Enumerated(EnumType.STRING)
     private Status status;
 
@@ -27,13 +29,12 @@ public class Account {
        public Account() {
     }
 
-    public Account(Long accountId, String name, String accountType, Customer customer, Status status) {
-        super();
+    public Account(Long accountId, String name, AccountType accountType, Status status, Customer customer) {
         this.accountId = accountId;
         this.name = name;
         this.accountType = accountType;
-        this.customer = customer;
         this.status = status;
+        this.customer = customer;
     }
 
     @ManyToOne
@@ -43,6 +44,10 @@ public class Account {
 
     public enum Status {
         Active, Frozen, Deleted;
+    }
+
+    public enum AccountType {
+        Current, Savings;
     }
 
     public Long getAccountId() {
@@ -61,11 +66,11 @@ public class Account {
         this.name = name;
     }
 
-    public String getAccountType() {
-        return this.accountType;
+    public AccountType getAccountType() {
+        return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
 
