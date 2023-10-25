@@ -36,7 +36,8 @@ public class WebSecurityConfig {
                         )
                         .authenticated())
                 .formLogin(
-                        fl -> fl.permitAll())
+                        fl -> fl.permitAll()
+                        .loginPage("/login"))
                 .logout((logout) -> logout.logoutSuccessUrl("/login"))
                 .csrf(csrf -> csrf.disable());
 
