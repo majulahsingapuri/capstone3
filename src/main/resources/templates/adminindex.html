@@ -9,8 +9,9 @@
 				border: 1px solid black;
 			}
 		</style>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	</head>
-	<p>
+	<i>
 		<p>Logged in as : <span sec:authentication="name"></span></p>
 		<div sec:authorize="hasAuthority('ROLE_ADMIN')"></div>
 
@@ -35,23 +36,28 @@
 					<td th:text="${u.enabled}"></td>
 					<td th:text="${u.userRole}"></td>
 
-					<td sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a class="edit" th:href="@{'/edit/' +${u.id}}"> <i
-								class="fas fa-user-edit"></i> edit
-						</a> <a style="color: red" th:href="@{'/delete/' + ${u.id}}"><i
-								class="fas fa-trash"></i>delete</a></td>
+					<td sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a class="edit" th:href="@{'/edit/' +${u.id}}"> <button
+								class="btn btn-warning">Edit</button>
+						</a>
+						<a th:href="@{'/delete/' + ${u.id}}"><button type="button"
+								class="btn btn-danger">Delete</button></a></td>
+								
+								
 				</tr>
 			</tbody>
 		</table>
-
-		<div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+		<hr>
+		<div class="text-center" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 			<form th:action="@{/new}">
-				<input type="submit" value="Add Users" />
+				<button style="margin-bottom: 50px" class= "btn btn-primary" type="submit">Add Users</button>
+				
 			</form>
 		</div>
 		
-		<form action="/logout" method="post">
-			<button type="submit">Logout</button>
-		</form>
-
+		<div class="text-center">
+			<form action="/logout" method="post">
+				<button style="margin: auto"class= "btn btn-outline-secondary" type="submit">Logout</button>
+			</form>
+		</div>
 	</body>
 </html>

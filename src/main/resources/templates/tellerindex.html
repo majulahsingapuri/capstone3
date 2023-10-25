@@ -9,6 +9,7 @@
 				border: 1px solid black;
 			}
 		</style>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<p>Logged in as : <span sec:authentication="name"></span></p>
@@ -31,22 +32,23 @@
 				<td th:text="${u.accountType}"></td>
 				<td th:text="${u.status}"></td>
 				<!--to edit-->
-				<td><a class="edit" th:href="@{'/account/view/' +${u.accountId}}"> <i
-						class="fas fa-user-edit"></i> view
-				</a> <a style="color: red" th:href="@{'/account/delete/' + ${u.accountId}}"><i
-						class="fas fa-trash"></i>delete</a></td>
+				<td><a class="edit" th:href="@{'/account/view/' +${u.accountId}}"> <button
+						class="btn btn-warning">View</button>
+				</a> <a style="color: red" th:href="@{'/account/delete/' + ${u.accountId}}"><button
+						class="btn btn-danger">Delete</button></a></td>
 			</tr>
 			</tbody>
 		</table>
 
-
-		<form action="/account/create">
-			<button type="submit">Create new account</button>
-		</form>
-
-		<form action="/logout" method="post">
-			<button type="submit">Logout</button>
-		</form>
+		<hr>
+		<div class="text-center">
+			<form action="/account/create">
+				<button style="margin-bottom: 50px" class= "btn btn-primary" type="submit">Create New Account</button>
+			</form>
+			<form action="/logout" method="post">
+				<button style="margin: auto" class= "btn btn-outline-secondary" type="submit">Logout</button>
+			</form>
+		</div>
 
 	</body>
 </html>

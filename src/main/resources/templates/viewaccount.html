@@ -9,6 +9,7 @@
 				border: 1px solid black;
 			}
 		</style>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<p>Logged in as : <span sec:authentication="name"></span></p>
@@ -33,14 +34,26 @@
 			</tbody>
 		</table>
 
-
-		<a th:href="@{'/transaction/create?accountId=' +${accountId}}">
-			<button type="button">Create new transaction</button>
-		</a>
-
-		<form action="/" method="get">
-			<button type="submit">Back</button>
-		</form>
+		<hr>
+		
+			<div class="text-left">
+				<a th:href="@{'/transaction/create?accountId=' +${accountId}}">
+					<button style="margin-bottom: 50px" class= "btn btn-primary" type="submit">Create New Transaction</button>
+				</a>
+			</div>
+			<div class="text-center">
+			<form action="/" method="get">
+				<button style="margin-bottom: 50px" class= "btn btn-info" type="button"
+				onclick="window.location.href='/'">
+				Home
+			</button>
+			</form>
+			<form action="/logout" method="post">
+				<button style="margin: auto" class= "btn btn-outline-secondary" type="submit">Logout</button>
+			</form>
+		</div>
 
 	</body>
 </html>
+
+

@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Insert title here</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<div>
@@ -40,14 +41,17 @@
 
 				</table>
 			</form>
-			<button type="submit" form="form1" value="Submit">Submit</button>
-			<button style="background-color: grey" type="button"
-				class="btn btn-primary" onclick="window.location.href='/'">
-				Home
-			</button>
-			<form action="/logout" method="post">
-				<button type="submit">Logout</button>
-			</form>
+			<div class="text-center">
+				<button style="margin-bottom: 50px" class= "btn btn-success" type="submit" form="form1" value="Submit">Submit</button>
+				<button style="margin-bottom: 50px" class= "btn btn-info" type="button"
+					onclick="window.location.href='/'">
+					Home
+				</button>
+				<form action="/logout" method="post">
+					<button style="margin: auto" class= "btn btn-outline-secondary" type="submit">Logout</button>
+				</form>
+			</div>
+
 		</div>
 
 	</body>
