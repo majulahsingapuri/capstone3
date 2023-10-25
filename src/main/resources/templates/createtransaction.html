@@ -34,9 +34,9 @@
     <input type="submit" value="Submit">
 </form>
 
-<form action="/transaction/create">
+<a th:href="@{'/account/view/' + ${accountId}}">
     <button type="submit">Back</button>
-</form>
+</a>
 
 </body>
 </html>
