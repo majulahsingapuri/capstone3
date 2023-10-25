@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+		<style>
+			tr,td,th{
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<p>Logged in as : <span sec:authentication="name"></span></p>
+		<div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
+
+		<p>Account Balance: <span th:text="${balance}"></span></p>
+		<table>
+			<thead class="thead-dark">
+			<tr>
+				<th>Date Created</th>
+				<th>Type</th>
+				<th>Amount</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr th:each="u:${transactions}">
+				<td th:text="${u.datecreated}"></td>
+				<td th:text="${u.type}"></td>
+				<td th:text="${u.amount}"></td>
+			</tr>
+			</tbody>
+		</table>
+
+
+		<a th:href="@{'/transaction/create?accountId=' +${accountId}}">
+			<button type="button">Create new transaction</button>
+		</a>
+
+		<form action="/" method="get">
+			<button type="submit">Back</button>
+		</form>
+
+	</body>
+</html>

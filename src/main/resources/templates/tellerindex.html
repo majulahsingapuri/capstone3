@@ -31,7 +31,7 @@
 				<td th:text="${u.accountType}"></td>
 				<td th:text="${u.status}"></td>
 				<!--to edit-->
-				<td><a class="edit" th:href="@{'/view/' +${u.accountId}}"> <i
+				<td><a class="edit" th:href="@{'/account/view/' +${u.accountId}}"> <i
 						class="fas fa-user-edit"></i> view
 				</a> <a style="color: red" th:href="@{'/account/delete/' + ${u.accountId}}"><i
 						class="fas fa-trash"></i>delete</a></td>
