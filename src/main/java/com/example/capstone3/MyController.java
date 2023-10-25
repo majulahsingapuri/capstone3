@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,11 @@ public class MyController {
     private RoleRepository roleRepository;
     @Autowired
     private AccountRepository accountRepository;
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping("/")
     public String showMain(Model model, Principal principal) {
         List<User> usersList = (List<User>) userRepository.findAll();
