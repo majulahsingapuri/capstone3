@@ -18,7 +18,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long TransactionId;
     private LocalDate datecreated;
-    private String type;
+    private TransactionType type;
     private double amount;
 
     @ManyToOne
@@ -30,7 +30,7 @@ public class Transaction {
     }
 
 
-    public Transaction(Long TransactionId, LocalDate datecreated, String type, double amount, Account account) {
+    public Transaction(Long TransactionId, LocalDate datecreated, TransactionType type, double amount, Account account) {
         super();
         this.TransactionId = TransactionId;
         this.datecreated = datecreated;
@@ -39,7 +39,9 @@ public class Transaction {
         this.account = account;
     }
 
-
+    public enum TransactionType {
+        Credit, Debit;
+    }
 
 
 
@@ -59,11 +61,11 @@ public class Transaction {
         this.datecreated = datecreated;
     }
 
-    public String getType() {
+    public TransactionType getType() {
         return this.type;
     }
 
-    public void setType(String type) {
+    public void setType(TransactionType type) {
         this.type = type;
     }
 

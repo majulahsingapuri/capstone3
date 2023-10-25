@@ -16,8 +16,24 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/logout", "/login").permitAll()
-                        .requestMatchers("/", "/new", "/edit/*", "/delete/*", "/save", "/account/*", "/account/delete/*")
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                            "/logout",
+                            "/login"
+                        )
+                        .permitAll()
+                        .requestMatchers(
+                            "/",
+                            "/new",
+                            "/edit/*",
+                            "/delete/*",
+                            "/save",
+                            "/account/*",
+                            "/account/delete/*",
+                            "/account/view/*",
+                            "/transaction/*",
+                            "/transaction/create/*"
+                        )
                         .authenticated())
                 .formLogin(
                         fl -> fl.permitAll())

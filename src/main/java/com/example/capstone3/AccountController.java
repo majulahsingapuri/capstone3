@@ -15,6 +15,9 @@ import java.util.List;
 public class AccountController {
     @Autowired
     private CustomerRepository customerRepository;
+    
+    @Autowired
+    private TransactionRepository transactionRepository;
 
     @Autowired AccountRepository accountRepository;
     @RequestMapping("/create")
@@ -41,6 +44,17 @@ public class AccountController {
         account.setStatus(Account.Status.Active);
         accountRepository.save(account);
         return "redirect:/";
+    }
+
+    @RequestMapping("/view/{id}")
+    public String viewAccount(@PathVariable("id") Long id, Model model) {
+        Account account = accountRepository.findById(id).get();
+        List<Transaction> transactions = transactionRepository.findByAccount(account);
+        double balance = transactionRepository.getBalance(id);
+        model.addAttribute("transactions", transactions);
+        model.addAttribute("accountId", id);
+        model.addAttribute("balance", balance);
+        return "viewaccount";
     }
 
     @RequestMapping("/delete/{id}")
