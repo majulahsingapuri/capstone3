@@ -34,7 +34,7 @@
 		</table>
 
 
-		<a th:href="@{'/transaction/create?accountId=' +${accountId}}">
+		<a th:href="@{'/transaction/create?accountId=' +${accountId} + '&balance=' + ${balance}}">
 			<button type="button">Create new transaction</button>
 		</a>
 

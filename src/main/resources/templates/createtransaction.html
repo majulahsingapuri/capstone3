@@ -8,10 +8,17 @@
         tr,td,th{
             border: 1px solid black;
         }
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 <div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
+<div th:if="${error}" class="error-message">
+    <p th:text="${error}"></p>
+</div>
 
 <form action="/transaction/create" method="post">
     <h2>Create a transaction</h2>
@@ -19,6 +26,8 @@
     <label for="accountName">Account ID: <p th:text="${accountId}"></p></label>
     <input type="text" id="accountId" name="accountId" hidden th:value="${accountId}">
     <br>
+
+    <input type="hidden" id="balance" name="balance" th:value="${balance}">
 
     <label>Transaction Type:</label>
     <input type="radio" id="credit" name="transactionType" value="Credit" checked>
