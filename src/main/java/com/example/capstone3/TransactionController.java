@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class TransactionController {
 
   @Autowired private TransactionRepository transactionRepository;
+  @Autowired private AccountRepository accountRepository;
 
   @PostMapping("/create")
   public String createTransaction(
