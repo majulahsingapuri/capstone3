@@ -71,13 +71,10 @@
 
                         <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                           <a class="edit" th:href="@{'/edit/' +${u.id}}">
-                            <i class="fas fa-user-edit"></i>
-                            edit
+                            <button class="btn btn-warning">Edit</button>
                           </a>
-                          <a
-                            style="color: red"
-                            th:href="@{'/delete/' + ${u.id}}"
-                            ><i class="fas fa-trash"></i>delete</a
+                          <a th:href="@{'/delete/' + ${u.id}}"
+                            ><button class="btn btn-danger">Delete</button></a
                           >
                         </td>
                       </tr>
@@ -87,18 +84,31 @@
               </div>
             </div>
             <br />
-            <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-              <form th:action="@{/new}">
-                <input type="submit" value="Add Users" />
-              </form>
-            </div>
-
-            <form action="/logout" method="post">
-              <button type="submit">Logout</button>
-            </form>
           </div>
         </div>
       </div>
+      <div class="text-center" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+        <form th:action="@{/new}">
+          <button
+            style="margin-bottom: 50px"
+            class="btn btn-primary"
+            type="submit"
+          >
+            Add Users
+          </button>
+        </form>
+      </div>
+      <form action="/logout" method="post">
+        <div class="text-center">
+          <button
+            style="margin: auto"
+            class="btn btn-outline-secondary"
+            type="submit"
+          >
+            Logout
+          </button>
+        </div>
+      </form>
     </section>
   </body>
 </html>
