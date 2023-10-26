@@ -17,6 +17,7 @@
     ></script>
   </head>
   <body>
+    <div th:replace="components :: nav"></div>
     <div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
 
     <label for="accountName"
@@ -94,5 +95,6 @@
         </button>
       </div>
     </a>
+    <div th:replace="components :: foot"></div>
   </body>
 </html>

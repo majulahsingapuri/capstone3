@@ -17,6 +17,7 @@
     ></script>
   </head>
   <body>
+    <div th:replace="components :: nav"></div>
     <div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
 
     <form action="/account/create" method="post">
@@ -75,5 +76,6 @@
         </button>
       </div>
     </form>
+    <div th:replace="components :: nav"></div>
   </body>
 </html>

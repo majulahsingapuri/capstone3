@@ -19,7 +19,8 @@
   </head>
 
   <body>
-    <p>Logged in as : <span sec:authentication="name"></span></p>
+	<div th:replace="components :: nav"></div>
+	<br>
     <div sec:authorize="hasAuthority('ROLE_ADMIN')"></div>
 
     <section class="intro">
@@ -110,5 +111,7 @@
         </div>
       </form>
     </section>
+
+	<div th:replace="components :: foot"></div>
   </body>
 </html>
