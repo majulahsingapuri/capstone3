@@ -1,6 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
   <!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
+
   <head>
     <meta charset="ISO-8859-1" />
     <title>Insert title here</title>
@@ -16,58 +17,86 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
+
+  <body class="bg-dark shadow-2-strong text-white">
     <div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
+    <div th:replace="components :: nav"></div>
+    <br />
+    <h2 class="text-uppercase text-center fw-bold">
+      Create a customer account
+    </h2>
+    <hr />
 
-    <form action="/account/create" method="post">
-      <h2>Create a customer account</h2>
-      <span>Customer name:</span>
-      <select name="customerId">
-        <option value="">Select a Customer</option>
-        <!-- Use Thymeleaf syntax to iterate through customers -->
-        <option
-          th:each="customer : ${customers}"
-          th:value="${customer.customerId}"
-          th:text="${customer.firstname} + ' ' + ${customer.lastname}"
-        ></option>
-      </select>
-      <br />
-
-      <label for="accountName">Account Name:</label>
-      <input type="text" id="accountName" name="accountName" required />
-      <br />
-
-      <label>Account Type:</label>
-      <input
-        type="radio"
-        id="currentAccount"
-        name="accountType"
-        value="Current"
-        checked
-      />
-      <label for="currentAccount">Current</label>
-      <input
-        type="radio"
-        id="savingsAccount"
-        name="accountType"
-        value="Savings"
-      />
-      <label for="savingsAccount">Savings</label>
-
-      <br />
-
-      <div class="text-center">
-        <button
-          style="margin-bottom: 50px"
-          class="btn btn-success"
-          type="submit"
-          value="Submit"
-        >
-          Submit
-        </button>
+    <div class="container">
+      <div class="row g-3 alight-items-center justify-content-center">
+        <form action="/account/create" method="post">
+          <div class="mb-3 row justify-content-center">
+            <div class="col-sm-4">
+              <label for="customerId" class="form-label">Customer Name:</label>
+              <select name="customerId" class="form-select">
+                <option value="">Select a Customer</option>
+                <!-- Use Thymeleaf syntax to iterate through customers -->
+                <option
+                  th:each="customer : ${customers}"
+                  th:value="${customer.customerId}"
+                  th:text="${customer.firstname} + ' ' + ${customer.lastname}"
+                ></option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row justify-content-center">
+            <div class="col-sm-4">
+              <label for="accountName" class="form-label">Account Name:</label>
+              <input
+                type="text"
+                id="accountName"
+                class="form-control"
+                name="accountName"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row justify-content-center">
+            <div class="col-sm-4">
+              <label>Account Type:</label>
+              <input
+                class="form-check-input"
+                type="radio"
+                id="currentAccount"
+                name="accountType"
+                value="Current"
+                checked
+              />
+              <label class="form-check-label" for="currentAccount"
+                >Current</label
+              >
+              <input
+                class="form-check-input"
+                type="radio"
+                id="savingsAccount"
+                name="accountType"
+                value="Savings"
+              />
+              <label class="form-check-label" for="savingsAccount"
+                >Savings</label
+              >
+            </div>
+          </div>
+          <br />
+          <div class="text-center">
+            <button
+              style="margin-bottom: 50px"
+              class="btn btn-success"
+              type="submit"
+              value="Submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
-
+    </div>
+    <hr />
     <form action="/">
       <div class="text-center">
         <button style="margin: auto" class="btn btn-info" type="submit">
