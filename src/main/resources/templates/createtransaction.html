@@ -23,6 +23,9 @@
       >Account ID:
       <p th:text="${accountId}"></p
     ></label>
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+      <p th:text="${error}"></p>
+    </div>
     <input
       type="text"
       id="accountId"
