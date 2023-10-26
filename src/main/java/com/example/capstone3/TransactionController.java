@@ -44,18 +44,4 @@ public class TransactionController {
     model.addAttribute("accountId", accountId);
     return "createtransaction";
   }
-
-  @PostMapping("/create")
-  public String createTransaction(
-      @RequestParam("accountId") Long accountId,
-      @RequestParam("transactionType") TransactionType transactionType,
-      @RequestParam("amount") double amount) {
-    Transaction transaction = new Transaction();
-    transaction.setAccount(accountRepository.findById(accountId).orElse(null));
-    transaction.setType(transactionType);
-    transaction.setAmount(amount);
-    transaction.setDatecreated(LocalDate.now());
-    transactionRepository.save(transaction);
-    return "redirect:/account/view/" + accountId;
-  }
 }
