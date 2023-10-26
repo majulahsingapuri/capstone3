@@ -15,36 +15,71 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
+
+  <body class="bg-dark shadow-2-strong text-white">
+    <div th:replace="components :: nav"></div>
+    <h2 class="text-center text-uppercase fw-bold">User Entry Form</h2>
     <div>
-      <div th:replace="components :: nav"></div>
-
-      <br />
-
-      <h2>User Entry Form</h2>
+      <hr />
       <p th:text="${error}"></p>
+      <br />
       <form action="/save" method="get" id="form1" th:object="${user}">
-        <table class="table table-striped">
-          <tr>
-            <td>User Name:</td>
-            <td><input type="text" th:field="*{username}" /></td>
-          </tr>
-          <tr>
-            <td>Password:</td>
-            <td><input type="text" th:field="*{password}" /></td>
-          </tr>
-          <tr>
-            <td>First Name:</td>
-            <td><input type="text" th:field="*{firstName}" /></td>
-          </tr>
-          <tr>
-            <td>Last Name:</td>
-            <td><input type="text" th:field="*{lastName}" /></td>
-          </tr>
-
-          <tr>
-            <td>
-              <div>
+        <div class="container">
+          <div class="row g-3 align-items-center justify-content-center">
+            <div class="mb-3 row justify-content-center">
+              <div class="col-sm-4">
+                <label for="username" class="form-label">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  th:field="*{username}"
+                  placeholder="Enter Username"
+                  id="username"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-3 row justify-content-center">
+              <div class="col-sm-4">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  th:field="*{password}"
+                  placeholder="Enter Password"
+                  id="password"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-3 row justify-content-center">
+              <div class="col-sm-4">
+                <label for="firstName" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  th:field="*{firstName}"
+                  placeholder="Enter First Name"
+                  id="firstName"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-3 row justify-content-center">
+              <div class="col-sm-4">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  th:field="*{lastName}"
+                  placeholder="Enter Last Name"
+                  id="lastName"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-3 row justify-content-center">
+              <div class="col-sm-4">
                 <th:block th:each="role: ${listRoles}">
                   <input
                     type="radio"
@@ -52,28 +87,39 @@
                     th:field="*{userRole}"
                     th:text="${role.name}"
                     th:value="${role.id}"
-                    class="m-2"
+                    class="m-1 form-check-input"
+                    required
                   />
                 </th:block>
               </div>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
       </form>
-      <button type="submit" form="form1" value="Submit">Submit</button>
-      <button
-        style="background-color: grey"
-        type="button"
-        class="btn btn-primary"
-        onclick="window.location.href='/'"
-      >
-        Home
-      </button>
-      <form action="/logout" method="post">
-        <button type="submit">Logout</button>
-      </form>
-    </div>
+      <hr />
+      <div class="text-center">
+        <button
+          style="margin-bottom: 20px"
+          class="btn btn-success"
+          type="submit"
+          form="form1"
+          value="Submit"
+        >
+          Submit
+        </button>
+      </div>
 
-    <div th:replace="components :: foot"></div>
+      <div class="text-center">
+        <button
+          style="margin-bottom: 20px"
+          class="btn btn-info"
+          type="button"
+          onclick="window.location.href='/'"
+        >
+          Back
+        </button>
+      </div>
+    </div>
+    <div th:replace="components :: footer"></div>
   </body>
 </html>
