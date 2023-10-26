@@ -1,6 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
   <!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
+
   <head>
     <meta charset="ISO-8859-1" />
     <title>Home</title>
@@ -16,51 +17,88 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body>
     <p>Logged in as : <span sec:authentication="name"></span></p>
     <div sec:authorize="hasAuthority('ROLE_ADMIN')"></div>
 
-    <table>
-      <thead class="thead-dark">
-        <tr>
-          <th>User Id</th>
-          <th>User Name</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Enabled</th>
-          <th>Role</th>
-        </tr>
-      </thead>
+    <section class="intro">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card bg-dark shadow-2-strong">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-dark mb-0 table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">UID</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="u:${usersList}" scope="row">
+                        <td th:text="${u.id}"></td>
+                        <td th:text="${u.username}"></td>
+                        <td>
+                          <span th:if="${u.userRole.name} == 'ROLE_ADMIN'"
+                            >ADMIN</span
+                          >
+                          <span th:if="${u.userRole.name} == 'ROLE_TELLER'"
+                            >TELLER</span
+                          >
+                        </td>
 
-      <tbody>
-        <tr th:each="u:${usersList}">
-          <td th:text="${u.id}"></td>
-          <td th:text="${u.username}"></td>
-          <td th:text="${u.firstName}"></td>
-          <td th:text="${u.lastName}"></td>
-          <td th:text="${u.enabled}"></td>
-          <td th:text="${u.userRole}"></td>
+                        <td th:text="${u.firstName}"></td>
+                        <td th:text="${u.lastName}"></td>
+                        <td>
+                          <span
+                            class="badge text-bg-success"
+                            th:if="${u.enabled}"
+                            >ACTIVE</span
+                          >
+                          <span
+                            class="badge text-bg-danger"
+                            th:unless="${u.enabled}"
+                            >INACTIVE</span
+                          >
+                        </td>
 
-          <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-            <a class="edit" th:href="@{'/edit/' +${u.id}}">
-              <i class="fas fa-user-edit"></i> edit
-            </a>
-            <a style="color: red" th:href="@{'/delete/' + ${u.id}}"
-              ><i class="fas fa-trash"></i>delete</a
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                        <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                          <a class="edit" th:href="@{'/edit/' +${u.id}}">
+                            <i class="fas fa-user-edit"></i>
+                            edit
+                          </a>
+                          <a
+                            style="color: red"
+                            th:href="@{'/delete/' + ${u.id}}"
+                            ><i class="fas fa-trash"></i>delete</a
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+              <form th:action="@{/new}">
+                <input type="submit" value="Add Users" />
+              </form>
+            </div>
 
-    <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-      <form th:action="@{/new}">
-        <input type="submit" value="Add Users" />
-      </form>
-    </div>
-
-    <form action="/logout" method="post">
-      <button type="submit">Logout</button>
-    </form>
+            <form action="/logout" method="post">
+              <button type="submit">Logout</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

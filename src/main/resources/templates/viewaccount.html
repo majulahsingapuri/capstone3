@@ -1,6 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
   <!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
+
   <head>
     <meta charset="ISO-8859-1" />
     <title>Insert title here</title>
@@ -16,35 +17,49 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body>
     <p>Logged in as : <span sec:authentication="name"></span></p>
     <div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
+    <section class="intro">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <p>Account Balance: <span th:text="${balance}"></span></p>
+            <div class="card bg-dark shadow-2-strong">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-dark mb-0 table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date Created</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Amount</th>
+                      </tr>
+                    </thead>
 
-    <p>Account Balance: <span th:text="${balance}"></span></p>
-    <table>
-      <thead class="thead-dark">
-        <tr>
-          <th>Date Created</th>
-          <th>Type</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
+                    <tbody>
+                      <tr th:each="u:${transactions}" scope="row">
+                        <td th:text="${u.datecreated}"></td>
+                        <td th:text="${u.type}"></td>
+                        <td th:text="${u.amount}"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <br />
+            <a th:href="@{'/transaction/create?accountId=' +${accountId}}">
+              <button type="button">Create new transaction</button>
+            </a>
 
-      <tbody>
-        <tr th:each="u:${transactions}">
-          <td th:text="${u.datecreated}"></td>
-          <td th:text="${u.type}"></td>
-          <td th:text="${u.amount}"></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <a th:href="@{'/transaction/create?accountId=' +${accountId}}">
-      <button type="button">Create new transaction</button>
-    </a>
-
-    <form action="/" method="get">
-      <button type="submit">Back</button>
-    </form>
+            <form action="/" method="get">
+              <button type="submit">Back</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
