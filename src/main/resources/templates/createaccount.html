@@ -1,48 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
-<head>
-    <meta charset="ISO-8859-1">
+  <!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
+  <head>
+    <meta charset="ISO-8859-1" />
     <title>Insert title here</title>
     <style>
-        tr,td,th{
-            border: 1px solid black;
-        }
+      tr,
+      td,
+      th {
+        border: 1px solid black;
+      }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
 
-<form action="/account/create" method="post">
-    <h2>Create a customer account</h2>
-    <span>Customer name:</span>
-    <select name="customerId">
+    <form action="/account/create" method="post">
+      <h2>Create a customer account</h2>
+      <span>Customer name:</span>
+      <select name="customerId">
         <option value="">Select a Customer</option>
         <!-- Use Thymeleaf syntax to iterate through customers -->
-        <option th:each="customer : ${customers}" th:value="${customer.customerId}" th:text="${customer.firstname} + ' ' + ${customer.lastname}"></option>
-    </select>
-    <br>
+        <option
+          th:each="customer : ${customers}"
+          th:value="${customer.customerId}"
+          th:text="${customer.firstname} + ' ' + ${customer.lastname}"
+        ></option>
+      </select>
+      <br />
 
-    <label for="accountName">Account Name:</label>
-    <input type="text" id="accountName" name="accountName" required>
-    <br>
+      <label for="accountName">Account Name:</label>
+      <input type="text" id="accountName" name="accountName" required />
+      <br />
 
-    <label>Account Type:</label>
-    <input type="radio" id="currentAccount" name="accountType" value="Current" checked>
-    <label for="currentAccount">Current</label>
-    <input type="radio" id="savingsAccount" name="accountType" value="Savings">
-    <label for="savingsAccount">Savings</label>
+      <label>Account Type:</label>
+      <input
+        type="radio"
+        id="currentAccount"
+        name="accountType"
+        value="Current"
+        checked
+      />
+      <label for="currentAccount">Current</label>
+      <input
+        type="radio"
+        id="savingsAccount"
+        name="accountType"
+        value="Savings"
+      />
+      <label for="savingsAccount">Savings</label>
 
+      <br />
 
-    <br>
+      <div class="text-center">
+        <button
+          style="margin-bottom: 50px"
+          class="btn btn-success"
+          type="submit"
+          value="Submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
 
-    <div class="text-center"><button style= "margin-bottom: 50px" class= "btn btn-success" type="submit" value="Submit">Submit</button></div>
-</form>
-
-<form action="/">
-    <div class="text-center"> <button style= "margin: auto" class= "btn btn-info" type="submit">Back</button></div>
-</form>
-
-</body>
+    <form action="/">
+      <div class="text-center">
+        <button style="margin: auto" class="btn btn-info" type="submit">
+          Back
+        </button>
+      </div>
+    </form>
+  </body>
 </html>

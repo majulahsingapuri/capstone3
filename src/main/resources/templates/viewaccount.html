@@ -1,59 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
-	<head>
-		<meta charset="ISO-8859-1">
-		<title>Insert title here</title>
-		<style>
-			tr,td,th{
-				border: 1px solid black;
-			}
-		</style>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	</head>
-	<body>
-		<p>Logged in as : <span sec:authentication="name"></span></p>
-		<div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
+  <!-- xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> -->
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Insert title here</title>
+    <style>
+      tr,
+      td,
+      th {
+        border: 1px solid black;
+      }
+    </style>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <p>Logged in as : <span sec:authentication="name"></span></p>
+    <div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
 
-		<p>Account Balance: <span th:text="${balance}"></span></p>
-		<table>
-			<thead class="thead-dark">
-			<tr>
-				<th>Date Created</th>
-				<th>Type</th>
-				<th>Amount</th>
-			</tr>
-			</thead>
+    <p>Account Balance: <span th:text="${balance}"></span></p>
+    <table>
+      <thead class="thead-dark">
+        <tr>
+          <th>Date Created</th>
+          <th>Type</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
 
-			<tbody>
-			<tr th:each="u:${transactions}">
-				<td th:text="${u.datecreated}"></td>
-				<td th:text="${u.type}"></td>
-				<td th:text="${u.amount}"></td>
-			</tr>
-			</tbody>
-		</table>
+      <tbody>
+        <tr th:each="u:${transactions}">
+          <td th:text="${u.datecreated}"></td>
+          <td th:text="${u.type}"></td>
+          <td th:text="${u.amount}"></td>
+        </tr>
+      </tbody>
+    </table>
 
-		<hr>
-		
-			<div class="text-left">
-				<a th:href="@{'/transaction/create?accountId=' +${accountId}}">
-					<button style="margin-bottom: 50px" class= "btn btn-primary" type="submit">Create New Transaction</button>
-				</a>
-			</div>
-			<div class="text-center">
-			<form action="/" method="get">
-				<button style="margin-bottom: 50px" class= "btn btn-info" type="button"
-				onclick="window.location.href='/'">
-				Home
-			</button>
-			</form>
-			<form action="/logout" method="post">
-				<button style="margin: auto" class= "btn btn-outline-secondary" type="submit">Logout</button>
-			</form>
-		</div>
+    <hr />
 
-	</body>
+    <div class="text-left">
+      <a th:href="@{'/transaction/create?accountId=' +${accountId}}">
+        <button
+          style="margin-bottom: 50px"
+          class="btn btn-primary"
+          type="submit"
+        >
+          Create New Transaction
+        </button>
+      </a>
+    </div>
+    <div class="text-center">
+      <form action="/" method="get">
+        <button
+          style="margin-bottom: 50px"
+          class="btn btn-info"
+          type="button"
+          onclick="window.location.href='/'"
+        >
+          Home
+        </button>
+      </form>
+      <form action="/logout" method="post">
+        <button
+          style="margin: auto"
+          class="btn btn-outline-secondary"
+          type="submit"
+        >
+          Logout
+        </button>
+      </form>
+    </div>
+  </body>
 </html>
-
-
