@@ -19,8 +19,8 @@
   </head>
 
   <body>
-	<div th:replace="components :: nav"></div>
-	<br>
+    <div th:replace="components :: nav"></div>
+    <br />
     <div sec:authorize="hasAuthority('ROLE_ADMIN')"></div>
 
     <section class="intro">
@@ -112,6 +112,6 @@
       </form>
     </section>
 
-	<div th:replace="components :: foot"></div>
+    <div th:replace="components :: foot"></div>
   </body>
 </html>
