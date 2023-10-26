@@ -1,6 +1,5 @@
 package com.example.capstone3;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,90 +12,91 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User{
+public class User {
 
-    @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(unique=true)
-    private String username;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private boolean enabled;
+  @Id
+  @Column(name = "user_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public User() {
-        super();
-    }
+  @Column(unique = true)
+  private String username;
 
-    public User(Long id, String username, String password, String firstName, String lastName) {
-        super();
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+  private String password;
+  private String firstName;
+  private String lastName;
+  private boolean enabled;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id")
-    private Role userRole;
+  public User() {
+    super();
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public User(Long id, String username, String password, String firstName, String lastName) {
+    super();
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "role_id")
+  private Role userRole;
 
-    public String getUsername() {
-        return username;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public Role getUserRole() {
-        return userRole;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public void setUserRoles(Role userRole) {
-        this.userRole = userRole;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+  public Role getUserRole() {
+    return userRole;
+  }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+  public void setUserRoles(Role userRole) {
+    this.userRole = userRole;
+  }
 
+  public boolean isEnabled() {
+    return enabled;
+  }
+
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
 }

@@ -1,4 +1,5 @@
 package com.example.capstone3;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,80 +15,82 @@ import jakarta.persistence.Table;
 @Table(name = "Accounts")
 public class Account {
 
-    @Id
-    @Column(name = "account_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long accountId;
-    private String name;
+  @Id
+  @Column(name = "account_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long accountId;
 
-    @Enumerated(EnumType.STRING)
-    private AccountType accountType;
-    @Enumerated(EnumType.STRING)
-    private Status status;
+  private String name;
 
+  @Enumerated(EnumType.STRING)
+  private AccountType accountType;
 
-       public Account() {
-    }
+  @Enumerated(EnumType.STRING)
+  private Status status;
 
-    public Account(Long accountId, String name, AccountType accountType, Status status, Customer customer) {
-        this.accountId = accountId;
-        this.name = name;
-        this.accountType = accountType;
-        this.status = status;
-        this.customer = customer;
-    }
+  public Account() {}
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+  public Account(
+      Long accountId, String name, AccountType accountType, Status status, Customer customer) {
+    this.accountId = accountId;
+    this.name = name;
+    this.accountType = accountType;
+    this.status = status;
+    this.customer = customer;
+  }
 
+  @ManyToOne
+  @JoinColumn(name = "customer_id")
+  private Customer customer;
 
-    public enum Status {
-        Active, Frozen, Deleted;
-    }
+  public enum Status {
+    Active,
+    Frozen,
+    Deleted;
+  }
 
-    public enum AccountType {
-        Current, Savings;
-    }
+  public enum AccountType {
+    Current,
+    Savings;
+  }
 
-    public Long getAccountId() {
-        return this.accountId;
-    }
+  public Long getAccountId() {
+    return this.accountId;
+  }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
+  public void setAccountId(Long accountId) {
+    this.accountId = accountId;
+  }
 
-    public String getName() {
-        return this.name;
-    }
+  public String getName() {
+    return this.name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public AccountType getAccountType() {
-        return accountType;
-    }
+  public AccountType getAccountType() {
+    return accountType;
+  }
 
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
-    }
+  public void setAccountType(AccountType accountType) {
+    this.accountType = accountType;
+  }
 
-    public Customer getCustomer() {
-        return this.customer;
-    }
+  public Customer getCustomer() {
+    return this.customer;
+  }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
 
-    public Status getStatus() {
-        return this.status;
-    }
+  public Status getStatus() {
+    return this.status;
+  }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    }
+  public void setStatus(Status status) {
+    this.status = status;
+  }
+}

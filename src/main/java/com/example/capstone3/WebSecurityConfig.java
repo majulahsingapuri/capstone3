@@ -13,54 +13,46 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                            "/logout",
-                            "/login"
-                        )
-                        .permitAll()
-                        .requestMatchers(
-                            "/",
-                            "/new",
-                            "/edit/*",
-                            "/delete/*",
-                            "/save",
-                            "/account/*",
-                            "/account/delete/*",
-                            "/account/view/*",
-                            "/transaction/*",
-                            "/transaction/create/*"
-                        )
-                        .authenticated())
-                .formLogin(
-                        fl -> fl.permitAll()
-                        .loginPage("/login"))
-                .logout((logout) -> logout.logoutSuccessUrl("/login"))
-                .csrf(csrf -> csrf.disable());
+  @Bean
+  SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+    http.authorizeHttpRequests(
+            auth ->
+                auth.requestMatchers("/logout", "/login")
+                    .permitAll()
+                    .requestMatchers(
+                        "/",
+                        "/new",
+                        "/edit/*",
+                        "/delete/*",
+                        "/save",
+                        "/account/*",
+                        "/account/delete/*",
+                        "/account/view/*",
+                        "/transaction/*",
+                        "/transaction/create/*")
+                    .authenticated())
+        .formLogin(fl -> fl.permitAll().loginPage("/login"))
+        .logout((logout) -> logout.logoutSuccessUrl("/login"))
+        .csrf(csrf -> csrf.disable());
 
-        return http.build();
+    return http.build();
+  }
 
-    }
+  @Bean
+  UserDetailsService userDetailsService() {
+    return new UserDetailsServiceImpl();
+  }
 
-    @Bean
-    UserDetailsService userDetailsService() {
-        return new UserDetailsServiceImpl();
-    }
+  @Bean
+  BCryptPasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
-
+  @Bean
+  DaoAuthenticationProvider authenticationProvider() {
+    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+    authProvider.setUserDetailsService(userDetailsService());
+    authProvider.setPasswordEncoder(passwordEncoder());
+    return authProvider;
+  }
 }
