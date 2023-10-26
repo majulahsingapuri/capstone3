@@ -23,19 +23,19 @@
         <table class="table table-striped">
           <tr>
             <td>User Name:</td>
-            <td><input type="text" th:field="*{username}" /></td>
+            <td><input type="text" th:field="*{username}" required /></td>
           </tr>
           <tr>
             <td>Password:</td>
-            <td><input type="text" th:field="*{password}" /></td>
+            <td><input type="text" th:field="*{password}" required /></td>
           </tr>
           <tr>
             <td>First Name:</td>
-            <td><input type="text" th:field="*{firstName}" /></td>
+            <td><input type="text" th:field="*{firstName}" required /></td>
           </tr>
           <tr>
             <td>Last Name:</td>
-            <td><input type="text" th:field="*{lastName}" /></td>
+            <td><input type="text" th:field="*{lastName}" required /></td>
           </tr>
 
           <tr>
@@ -49,24 +49,47 @@
                     th:text="${role.name}"
                     th:value="${role.id}"
                     class="m-2"
+                    required
                   />
                 </th:block>
               </div>
             </td>
           </tr>
         </table>
+        <hr />
       </form>
-      <button type="submit" form="form1" value="Submit">Submit</button>
-      <button
-        style="background-color: grey"
-        type="button"
-        class="btn btn-primary"
-        onclick="window.location.href='/'"
-      >
-        Home
-      </button>
+      <div class="text-center">
+        <button
+          style="margin-bottom: 20px"
+          class="btn btn-success"
+          type="submit"
+          form="form1"
+          value="Submit"
+        >
+          Submit
+        </button>
+      </div>
+
+      <div class="text-center">
+        <button
+          style="margin-bottom: 20px"
+          class="btn btn-info"
+          type="button"
+          onclick="window.location.href='/'"
+        >
+          Home
+        </button>
+      </div>
       <form action="/logout" method="post">
-        <button type="submit">Logout</button>
+        <div class="text-center">
+          <button
+            style="margin: auto"
+            class="btn btn-outline-secondary"
+            type="submit"
+          >
+            Logout
+          </button>
+        </div>
       </form>
     </div>
   </body>

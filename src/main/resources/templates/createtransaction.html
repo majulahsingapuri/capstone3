@@ -75,11 +75,24 @@
       />
 
       <br />
-      <input type="submit" value="Submit" />
+      <div class="text-center">
+        <button
+          style="margin-bottom: 50px"
+          class="btn btn-success"
+          type="submit"
+          value="Submit"
+        >
+          Submit
+        </button>
+      </div>
     </form>
 
     <a th:href="@{'/account/view/' + ${accountId}}">
-      <button type="submit">Back</button>
+      <div class="text-center">
+        <button style="margin: auto" class="btn btn-info" type="submit">
+          Back
+        </button>
+      </div>
     </a>
   </body>
 </html>
