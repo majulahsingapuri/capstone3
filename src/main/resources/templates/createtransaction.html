@@ -19,6 +19,21 @@
   <body>
     <div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
 
+    <label for="accountName"
+      >Account ID:
+      <p th:text="${accountId}"></p
+    ></label>
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+      <p th:text="${error}"></p>
+    </div>
+    <input
+      type="text"
+      id="accountId"
+      name="accountId"
+      hidden
+      th:value="${accountId}"
+    />
+    <br />
     <form action="/transaction/create" method="post">
       <h2>Create a transaction</h2>
 
