@@ -1,15 +1,8 @@
 package com.example.capstone3;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Accounts")
@@ -28,14 +21,25 @@ public class Account {
   @Enumerated(EnumType.STRING)
   private Status status;
 
+  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Transaction> transactions;
+
+  public List<Transaction> getTransactions() {
+    return transactions;
+  }
+
+  public void setTransactions(List<Transaction> transactions) {
+    this.transactions = transactions;
+  }
+
   public Account() {}
 
-  public Account(
-      Long accountId, String name, AccountType accountType, Status status, Customer customer) {
+  public Account(Long accountId, String name, AccountType accountType, Status status, List<Transaction> transactions, Customer customer) {
     this.accountId = accountId;
     this.name = name;
     this.accountType = accountType;
     this.status = status;
+    this.transactions = transactions;
     this.customer = customer;
   }
 
