@@ -84,6 +84,7 @@ public class MyController {
     user.setUserRoles(roleRepository.findById(role_id).get());
     User user_old = userRepository.findById(id).orElseThrow();
     user.setPassword(user_old.getPassword());
+    user.setEnabled(user_old.isEnabled());
     userRepository.save(user);
     return "redirect:/";
   }
