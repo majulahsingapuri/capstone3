@@ -1,7 +1,6 @@
 package com.example.capstone3;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -34,7 +33,13 @@ public class Account {
 
   public Account() {}
 
-  public Account(Long accountId, String name, AccountType accountType, Status status, List<Transaction> transactions, Customer customer) {
+  public Account(
+      Long accountId,
+      String name,
+      AccountType accountType,
+      Status status,
+      List<Transaction> transactions,
+      Customer customer) {
     this.accountId = accountId;
     this.name = name;
     this.accountType = accountType;
