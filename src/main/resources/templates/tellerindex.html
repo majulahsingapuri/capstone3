@@ -46,7 +46,19 @@
                         ></td>
                         <td th:text="${u.name}"></td>
                         <td th:text="${u.accountType}"></td>
-                        <td th:text="${u.status}"></td>
+                        <td>
+                          <span
+                            class="badge text-bg-success"
+                            th:if="${u.status}"
+                            >ACTIVE</span
+                          >
+                          <span
+                            class="badge text-bg-danger"
+                            th:unless="${u.status}"
+                            >INACTIVE</span
+                          >
+                        </td>
+
                         <!--to edit-->
                         <td>
                           <a

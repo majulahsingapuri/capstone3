@@ -18,6 +18,7 @@
 
   <body class="bg-dark shadow-2-strong text-white">
     <div th:replace="components :: nav"></div>
+    <div sec:authorize="hasAuthority('ROLE_ADMIN')"></div>
     <h2 class="text-center text-uppercase fw-bold">User Entry Form</h2>
     <div>
       <hr />
