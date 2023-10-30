@@ -22,7 +22,7 @@
     <div th:replace="components :: nav"></div>
     <div sec:authorize="hasAuthority('ROLE_TELLER')"></div>
 
-    <section>
+    <section class="intro">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12">
@@ -67,21 +67,23 @@
                 </div>
               </div>
             </div>
-            <br />
-            <form action="/account/create">
-              <div class="text-center">
-                <button
-                  style="margin-bottom: 50px"
-                  class="btn btn-primary"
-                  type="submit"
-                >
-                  Create a New Account
-                </button>
-              </div>
-            </form>
           </div>
         </div>
       </div>
+      <div class="text-center">
+        <form action="/account/create">
+          <div class="text-center">
+            <button
+              style="margin-bottom: auto"
+              class="btn btn-primary"
+              type="submit"
+            >
+              Create a New Account
+            </button>
+          </div>
+        </form>
+      </div>
+      <br />
     </section>
     <div th:replace="components :: footer"></div>
   </body>
