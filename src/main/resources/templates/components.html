@@ -58,6 +58,9 @@
               class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
             >
               <li><a href="/" class="nav-link px-4 text-white">Home</a></li>
+              <li>
+                <a href="/aboutus" class="nav-link px-4 text-white">About Us</a>
+              </li>
             </ul>
 
             <p class="col-md-4 d-flex text-center mb-1">
@@ -82,12 +85,9 @@
     <div th:fragment="foot">
       <div class="container">
         <footer
-          class="d-flex justify-content-between align-items-center"
-          style="position: absolute; bottom: 0; left: 0; right: 0"
+          class="d-flex justify-content-between align-items-center fixed-bottom bg-dark text-white"
         >
-          <p class="col-md-4 px-4 mb-0 text-white">
-            &copy; 2023 Big Banking Co.
-          </p>
+          <p class="col-md-4 px-4 mb-0">&copy; 2023 Big Banking Co.</p>
 
           <a
             href="https://www.linkedin.com/in/roy-teoh/"
@@ -100,7 +100,6 @@
               width="200"
               height="50"
             />
-            <!-- <img src="https://gcdnb.pbrd.co/images/lFY0EJaC2OmN.jpg?o=1" alt="win" title="title2" width="75" height="50"> -->
           </a>
 
           <ul class="nav col-md-4 justify-content-end">

@@ -21,7 +21,9 @@ public class WebSecurityConfig {
                     .permitAll()
                     .requestMatchers(
                         "/",
+                        "/aboutus",
                         "/new",
+                        "/images/*",
                         "/edit/*",
                         "/delete/*",
                         "/save",
